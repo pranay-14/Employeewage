@@ -6,32 +6,32 @@ public class Employee
 	{
 		int wagePerHour=20, workHours=8;
 		int isFullTime=1;
+		int totalWage=0;
+		int salaryPerDay=0;
 		int partTimeWorkHours=4;
 		System.out.println("Welcome to Employee Wage calculation");
-		int status=((int)(Math.random()*2 + 1)); 
-		if(status==1)
+		for(int day=1;day<=20;day++)
 		{
-			System.out.println("Employee is Present");		
-			int jobType=((int)(Math.random()*2 + 1));
-                	switch(jobType)
-			{
+				int jobType=((int)(Math.random()*3 + 1));
+                		switch(jobType)
+				{
+				case 3:
+					System.out.println("Employee is absent");
+					salaryPerDay=0;
+					break;
 				case 2:
 					System.out.println("Employee is a part time");
-	                        	int salaryPartTime = wagePerHour * partTimeWorkHours;
-        	                	System.out.println("Salary of Employee per day is : " + salaryPartTime);
+	                        	salaryPerDay = wagePerHour * partTimeWorkHours;
+        	                	System.out.println("Salary of Employee per day is : " + salaryPerDay);
 					break;
 				case 1:
 					System.out.println("Employee is Full time Employee");
-        	                	int salary = wagePerHour * workHours;
-	                        	System.out.println("Salary of Employee per day is : " + salary);
+        	                	salaryPerDay = wagePerHour * workHours;
+	                        	System.out.println("Salary of Employee per day is : " + salaryPerDay);
 					break;
-			}	
+				}
+			totalWage+=salaryPerDay;
 		}
-		else
-		{
-			System.out.println("Employee is absent");
-			System.out.println("Salary cannot be calculated because employee is absent");
-		}
-		
+	System.out.println("The total month salary is given as : " +totalWage);
 	}
 }
