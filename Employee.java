@@ -13,20 +13,19 @@ public class Employee
 		{
 			System.out.println("Employee is Present");		
 			int jobType=((int)(Math.random()*2 + 1));
-                	if(jobType==isFullTime)
-                	{
-                        	System.out.println("Employee is Full time Employee");
-                        	int salary = wagePerHour * workHours;
-                        	System.out.println("Salary of Employee per day is : " + salary);
-                	}
-                	else
-                	{
-                        	System.out.println("Employee is a part time");
-                        	int salaryPartTime = wagePerHour * partTimeWorkHours;
-                        	System.out.println("Salary of Employee per day is : " + salaryPartTime);
-
-                	}
-                	
+                	switch(jobType)
+			{
+				case 2:
+					System.out.println("Employee is a part time");
+	                        	int salaryPartTime = wagePerHour * partTimeWorkHours;
+        	                	System.out.println("Salary of Employee per day is : " + salaryPartTime);
+					break;
+				case 1:
+					System.out.println("Employee is Full time Employee");
+        	                	int salary = wagePerHour * workHours;
+	                        	System.out.println("Salary of Employee per day is : " + salary);
+					break;
+			}	
 		}
 		else
 		{
