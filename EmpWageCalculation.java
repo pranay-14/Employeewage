@@ -10,42 +10,46 @@ class Employee
         public int workingDays;
         public int workingHours;
         public int empRate;
-        public Employee(int workingDays,int workingHours, int empRate)
+        public int fullTimeHours;
+        public int partTimeHours;
+        public Employee(int workingDays,int workingHours, int empRate, int fullTimeHours, int partTimeHours)
         {
             this.workingDays=workingDays;
             this.workingHours=workingHours;
             this.empRate=empRate;
+            this.fullTimeHours=fullTimeHours;
+            this.partTimeHours=partTimeHours;
             this.empHours=0;
             this.totalWorkingDays=1;
             this.totalWorkingHours=0;
             this.salaryPerDay=0;
             this.totalWage=0;
         }
-        public void calcEmpWage()
+        public int calcEmpWage()
         {
 
                         while(totalWorkingDays<=workingDays && totalWorkingHours<=workingHours)
                         {
                                 int jobType=(int)(Math.random()*3);
-                                //System.out.println(jobType);
                                 switch(jobType)
                                 {
                                         case 1:
-                                                empHours=8;
+                                                totalWorkingHours+=fullTimeHours;
+                                                salaryPerDay=fullTimeHours*empRate;
+                                                totalWorkingDays++;
                                                 break;
                                         case 2:
-                                                empHours=4;
+                                                totalWorkingHours+=partTimeHours;
+                                                salaryPerDay=partTimeHours*empRate;
+                                                totalWorkingDays++;
                                                 break;
                                         case 0:
-                                                empHours=0;
+                                                salaryPerDay=0;
                                                 break;
                                 }
-                                totalWorkingHours+=empHours;
-                                salaryPerDay=empHours*empRate;
-                                totalWage+=salaryPerDay;
-                                totalWorkingDays++;
+                                totalWage+=salaryPerDay;   
                         }
-                
+            return totalWage;
         }
         public void display()
         {
@@ -55,17 +59,35 @@ class Employee
             System.out.println("--------------------------------------------------------------------");
         }
         
-    }
+}
     public class EmpWageCalculation
     {
         public static void main(String args[])
         {
-                Employee DMART = new Employee(20,100,20);
-                Employee RELIANCE = new Employee(10,40,4);
-                DMART.calcEmpWage();
-                RELIANCE.calcEmpWage();
-                DMART.display();
-                RELIANCE.display();
+            HashMap<String,Integer> companies=new HashMap<>();
+
+            System.out.println("Enter the number of companies");
+            Scanner scanner=new Scanner(System.in);
+            int numberOfCompanies=scanner.nextInt();
+            for(int i=0;i<numberOfCompanies;i++){
+                System.out.println("Enter the wage per hour");
+                int empRate=scanner.nextInt();
+                System.out.println("Enter the total number of working days");
+                int workingDays=scanner.nextInt();
+                System.out.println("Enter the total number of working hours");
+                int workingHours=scanner.nextInt();
+                System.out.println("Enter the fullTime hours");
+                int fullTimeHours=scanner.nextInt();
+                System.out.println("Enter the parttime hours");
+                int partTimeHours=scanner.nextInt();
+                System.out.println("Enter the name of the company");
+                String CompanyName=scanner.next();
+                Employee comp=new Employee(workingDays, workingHours, empRate, fullTimeHours, partTimeHours);
+                comp.calcEmpWage();
+                companies.put(CompanyName,comp.calcEmpWage());
+            }
+    
+            System.out.println(companies);
         }
     }
     
