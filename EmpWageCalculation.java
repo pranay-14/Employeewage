@@ -88,6 +88,18 @@ class Employee
             }
     
             System.out.println(companies);
+
+	    System.out.println("Enter the name of the company to search");
+            String searchEnterprise=scanner.next();
+
+            if(companies.containsKey(searchEnterprise))
+            {
+                System.out.println("Daily Wage of: "+searchEnterprise+" is Rs."+companies.get(searchEnterprise));
+            }
+            else
+            {
+                System.out.println("No such company");
+            }
         }
     }
     
